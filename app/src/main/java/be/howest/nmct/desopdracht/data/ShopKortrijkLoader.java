@@ -59,7 +59,11 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
                 jsonReader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
 
                 int id = 1;
+
+                jsonReader.beginObject();
+                jsonReader.nextName();
                 jsonReader.beginArray();
+                Log.i("test", "test1");
                 while(jsonReader.hasNext()){
                     jsonReader.beginObject();
 
@@ -88,6 +92,7 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
                     jsonReader.endObject();
                 }
                 jsonReader.endArray();
+                jsonReader.endObject();
 
                 cursor = matrixCursor;
             }
