@@ -63,7 +63,6 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
                 jsonReader.beginObject();
                 jsonReader.nextName();
                 jsonReader.beginArray();
-                Log.i("test", "test1");
                 while(jsonReader.hasNext()){
                     jsonReader.beginObject();
 
@@ -72,12 +71,19 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
 
                     while(jsonReader.hasNext()){
                         String name = jsonReader.nextName();
+
                         if(name.equals(Contract.ShopColumns.COLUMN_SHOP)){
+                            jsonReader.beginObject();
+                            jsonReader.nextName();
                             shop = jsonReader.nextString();
+                            jsonReader.endObject();
                         }
 
                         else if(name.equals(Contract.ShopColumns.COLUMN_ADDRESS)){
+                            jsonReader.beginObject();
+                            jsonReader.nextName();
                             address = jsonReader.nextString();
+                            jsonReader.endObject();
                         }
                         else
                             jsonReader.skipValue();
