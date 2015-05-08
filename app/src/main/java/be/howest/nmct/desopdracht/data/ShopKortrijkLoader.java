@@ -21,7 +21,9 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
     private final String[] columnNames = new String[]{
             BaseColumns._ID,
             Contract.ShopColumns.COLUMN_SHOP,
-            Contract.ShopColumns.COLUMN_ADDRESS
+            Contract.ShopColumns.COLUMN_ADDRESS,
+            Contract.ShopColumns.COLUMN_POSTCODE,
+            Contract.ShopColumns.COLUMN_DEELGEMEENTE
     };
     private static Object lock = new Object();
     private final String url = "http://data.kortrijk.be/middenstand/winkels_markten.json";
@@ -68,6 +70,8 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
 
                     String shop = "";
                     String address = "";
+                    String postcode = "";
+                    String deelgemeente = "";
 
                     while(jsonReader.hasNext()){
                         String name = jsonReader.nextName();
@@ -78,11 +82,22 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
                             shop = jsonReader.nextString();
                             jsonReader.endObject();
                         }
-
                         else if(name.equals(Contract.ShopColumns.COLUMN_ADDRESS)){
                             jsonReader.beginObject();
                             jsonReader.nextName();
                             address = jsonReader.nextString();
+                            jsonReader.endObject();
+                        }
+                        else if(name.equals(Contract.ShopColumns.COLUMN_POSTCODE)){
+                            jsonReader.beginObject();
+                            jsonReader.nextName();
+                            postcode = jsonReader.nextString();
+                            jsonReader.endObject();
+                        }
+                        else if(name.equals(Contract.ShopColumns.COLUMN_DEELGEMEENTE)){
+                            jsonReader.beginObject();
+                            jsonReader.nextName();
+                            deelgemeente = jsonReader.nextString();
                             jsonReader.endObject();
                         }
                         else
@@ -93,6 +108,8 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
                     row.add(id);
                     row.add(shop);
                     row.add(address);
+                    row.add(postcode);
+                    row.add(deelgemeente);
                     id++;
 
                     jsonReader.endObject();
