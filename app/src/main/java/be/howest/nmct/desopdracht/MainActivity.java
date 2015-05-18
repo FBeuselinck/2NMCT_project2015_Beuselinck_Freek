@@ -1,5 +1,6 @@
 package be.howest.nmct.desopdracht;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -34,6 +35,7 @@ public class MainActivity extends ActionBarActivity implements ShopKortrijkFragm
                     .addToBackStack(null).commit();
         }
     }
+
 
     @Override
     public void showShopKortrijkDetails(ShopKortrijk shopKortrijk){

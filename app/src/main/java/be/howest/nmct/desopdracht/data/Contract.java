@@ -11,5 +11,8 @@ public class Contract {
         public static final String COLUMN_ADDRESS = "address";
         public static final String COLUMN_POSTCODE = "postcode";
         public static final String COLUMN_DEELGEMEENTE = "deelgemeente";
+        public static final String COLUMN_LONGITUDE = "geo_x";
+        public static final String COLUMN_LATITUDE = "geo_y";
+
     }
 }

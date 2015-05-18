@@ -90,6 +90,12 @@ public class ShopKortrijkFragment extends ListFragment implements LoaderManager.
         shopKortrijk.setPostcode(cursor.getString(cursor.getColumnIndex(Contract.ShopColumns.COLUMN_POSTCODE)));
         shopKortrijk.setDeelgemeente(cursor.getString(cursor.getColumnIndex(Contract.ShopColumns.COLUMN_DEELGEMEENTE)));
 
+        float longitude = Float.parseFloat(cursor.getString(cursor.getColumnIndex(Contract.ShopColumns.COLUMN_LONGITUDE)));
+        float latitude = Float.parseFloat(cursor.getString(cursor.getColumnIndex(Contract.ShopColumns.COLUMN_LATITUDE)));
+
+        shopKortrijk.setLongitude(longitude);
+        shopKortrijk.setLatitude(latitude);
+
         this.shopKortrijkFragmentListener.showShopKortrijkDetails(shopKortrijk);
     }
 

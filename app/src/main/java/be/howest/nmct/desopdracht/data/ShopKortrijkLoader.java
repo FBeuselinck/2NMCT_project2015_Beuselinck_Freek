@@ -23,7 +23,9 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
             Contract.ShopColumns.COLUMN_SHOP,
             Contract.ShopColumns.COLUMN_ADDRESS,
             Contract.ShopColumns.COLUMN_POSTCODE,
-            Contract.ShopColumns.COLUMN_DEELGEMEENTE
+            Contract.ShopColumns.COLUMN_DEELGEMEENTE,
+            Contract.ShopColumns.COLUMN_LONGITUDE,
+            Contract.ShopColumns.COLUMN_LATITUDE
     };
     private static Object lock = new Object();
     private final String url = "http://data.kortrijk.be/middenstand/winkels_markten.json";
@@ -72,6 +74,8 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
                     String address = "";
                     String postcode = "";
                     String deelgemeente = "";
+                    String longitude = "";
+                    String latitude = "";
 
                     while(jsonReader.hasNext()){
                         String name = jsonReader.nextName();
@@ -100,6 +104,18 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
                             deelgemeente = jsonReader.nextString();
                             jsonReader.endObject();
                         }
+                        else if(name.equals(Contract.ShopColumns.COLUMN_LONGITUDE)){
+                            jsonReader.beginObject();
+                            jsonReader.nextName();
+                            longitude = jsonReader.nextString();
+                            jsonReader.endObject();
+                        }
+                        else if(name.equals(Contract.ShopColumns.COLUMN_LATITUDE)){
+                            jsonReader.beginObject();
+                            jsonReader.nextName();
+                            latitude = jsonReader.nextString();
+                            jsonReader.endObject();
+                        }
                         else
                             jsonReader.skipValue();
                     }
@@ -110,6 +126,8 @@ public class ShopKortrijkLoader extends AsyncTaskLoader<Cursor> {
                     row.add(address);
                     row.add(postcode);
                     row.add(deelgemeente);
+                    row.add(longitude);
+                    row.add(latitude);
                     id++;
 
                     jsonReader.endObject();
