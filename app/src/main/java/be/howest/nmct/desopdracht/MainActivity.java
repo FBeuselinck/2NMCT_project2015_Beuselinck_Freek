@@ -18,7 +18,7 @@ import android.os.Build;
 import be.howest.nmct.desopdracht.data.ShopKortrijk;
 
 
-public class MainActivity extends ActionBarActivity implements ShopKortrijkFragment.ShopKortrijkFragmentListener {
+public class MainActivity extends ActionBarActivity implements ShopKortrijkFragment.ShopKortrijkFragmentListener, ShopKortrijkDetailsFragment.MapFragmentListener {
 
     public static final String EXTRA_SHOP = "be.howest.nmct.desopdracht.EXTRA_SHOP";
     public static final String EXTRA_ADDRESS = "be.howest.nmct.desopdracht.EXTRA_ADDRESS";
@@ -44,6 +44,16 @@ public class MainActivity extends ActionBarActivity implements ShopKortrijkFragm
 
         ShopKortrijkDetailsFragment shopKortrijkDetailsFragment = ShopKortrijkDetailsFragment.newInstance(shopKortrijk);
         fragmentTransaction.replace(R.id.container, shopKortrijkDetailsFragment).addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void showMap(ShopKortrijk shopKortrijk){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        MapFragment mapFragment = MapFragment.newInstance(shopKortrijk);
+        fragmentTransaction.replace(R.id.container, mapFragment).addToBackStack(null)
                 .commit();
     }
 

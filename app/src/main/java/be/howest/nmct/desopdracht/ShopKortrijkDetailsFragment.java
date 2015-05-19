@@ -1,12 +1,14 @@
 package be.howest.nmct.desopdracht;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import be.howest.nmct.desopdracht.data.ShopKortrijk;
@@ -23,6 +25,9 @@ public class ShopKortrijkDetailsFragment extends Fragment {
     private TextView textViewShop;
     private TextView textViewStreet;
     private TextView textViewTown;
+    private Button btnShowMap;
+
+    private MapFragmentListener mapFragmentListener;
 
     public ShopKortrijkDetailsFragment() {
         // Required empty public constructor
@@ -59,12 +64,38 @@ public class ShopKortrijkDetailsFragment extends Fragment {
 
         showShopKortrijkDetails();
 
+        btnShowMap = (Button) v.findViewById(R.id.btnShowMap);
+        btnShowMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mapFragmentListener.showMap(shopKortrijk);
+            }
+        });
+
         return v;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try
+        {
+            this.mapFragmentListener = (MapFragmentListener) activity;
+        }
+        catch(ClassCastException ex)
+        {
+            throw new ClassCastException(activity.toString() + " must implement MapFragmentListener");
+        }
     }
 
     private void showShopKortrijkDetails(){
         this.textViewShop.setText(shopKortrijk.getShop());
         this.textViewStreet.setText(shopKortrijk.getAddress());
         this.textViewTown.setText(shopKortrijk.getPostcode() + " " + shopKortrijk.getDeelgemeente());
+    }
+
+    public interface MapFragmentListener{
+        public void showMap(ShopKortrijk shopKortrijk);
     }
 }
