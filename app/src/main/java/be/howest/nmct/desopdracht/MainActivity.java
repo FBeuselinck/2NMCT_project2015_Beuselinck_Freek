@@ -17,13 +17,7 @@ import android.os.Build;
 
 import be.howest.nmct.desopdracht.data.ShopKortrijk;
 
-
 public class MainActivity extends ActionBarActivity implements ShopKortrijkFragment.ShopKortrijkFragmentListener, ShopKortrijkDetailsFragment.MapFragmentListener {
-
-    public static final String EXTRA_SHOP = "be.howest.nmct.desopdracht.EXTRA_SHOP";
-    public static final String EXTRA_ADDRESS = "be.howest.nmct.desopdracht.EXTRA_ADDRESS";
-    public static final String EXTRA_POSTCODE = "be.howest.nmct.desopdracht.EXTRA_POSTCODE";
-    public static final String EXTRA_DEELGEMEENTE = "be.howest.nmct.desopdracht.EXTRA_DEELGEMEENTE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +30,15 @@ public class MainActivity extends ActionBarActivity implements ShopKortrijkFragm
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragmentManager = getFragmentManager();
+        if(fragmentManager.getBackStackEntryCount() != 0) {
+            fragmentManager.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     @Override
     public void showShopKortrijkDetails(ShopKortrijk shopKortrijk){
@@ -56,46 +59,4 @@ public class MainActivity extends ActionBarActivity implements ShopKortrijkFragm
         fragmentTransaction.replace(R.id.container, mapFragment).addToBackStack(null)
                 .commit();
     }
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-
-    /*
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-    }
-    */
 }

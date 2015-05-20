@@ -21,10 +21,6 @@ import be.howest.nmct.desopdracht.data.Contract;
 import be.howest.nmct.desopdracht.data.ShopKortrijk;
 import be.howest.nmct.desopdracht.data.ShopKortrijkLoader;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ShopKortrijkFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private SimpleCursorAdapter adapter;
@@ -102,41 +98,4 @@ public class ShopKortrijkFragment extends ListFragment implements LoaderManager.
     public interface ShopKortrijkFragmentListener{
         public void showShopKortrijkDetails(ShopKortrijk shopKortrijk);
     }
-
-    /*
-    private ShopKortrijkFragmentListener shopKortrijkFragmentListener;
-    private ShopKortrijkAdapter shopKortrijkAdapter;
-
-    public ShopKortrijkFragment() {
-        // Required empty public constructor
-    }
-
-    public static ShopKortrijkFragment newInstance(){
-        ShopKortrijkFragment shopKortrijkFragment = new ShopKortrijkFragment();
-        return shopKortrijkFragment;
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shop_kortrijk, container, false);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-
-        this.shopKortrijkAdapter = new ShopKortrijkAdapter();
-
-        setListAdapter(shopKortrijkAdapter);
-    }
-
-    public interface ShopKortrijkFragmentListener{
-        //public void showMainFragment
-    }
-
-    public class ShopKortrijkAdapter extends ArrayAdapter<Data.>
-    */
 }

@@ -1,6 +1,5 @@
 package be.howest.nmct.desopdracht;
 
-
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -18,10 +17,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import be.howest.nmct.desopdracht.data.ShopKortrijk;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MapFragment extends Fragment {
 
     private static final String SHOPKORTRIJK_KEY = "shopkortrijk_key";
@@ -76,20 +71,20 @@ public class MapFragment extends Fragment {
 
     private void placeMarker()
     {
-        // Create marker.
+        //Create marker
         MarkerOptions markerOptions = new MarkerOptions()
                 .position(new LatLng(this.shopKortrijk.getLatitude(), this.shopKortrijk.getLongitude()))
                 .title(this.shopKortrijk.getShop())
                 .flat(true)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
 
-        // Add marker to map.
+        //Add marker to map
         googleMap.addMarker(markerOptions);
 
-        //Setting the camera position to the marker.
+        //Setting the camera position to the marker
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(new LatLng(this.shopKortrijk.getLatitude(), this.shopKortrijk.getLongitude()))
-                .zoom(16).build();
+                .zoom(15).build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 }

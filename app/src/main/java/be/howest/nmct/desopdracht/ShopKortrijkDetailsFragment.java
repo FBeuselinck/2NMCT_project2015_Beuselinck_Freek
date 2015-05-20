@@ -13,10 +13,6 @@ import android.widget.TextView;
 
 import be.howest.nmct.desopdracht.data.ShopKortrijk;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ShopKortrijkDetailsFragment extends Fragment {
 
     private static final String SHOPKORTRIJK_KEY = "shopkortrijk_key";
